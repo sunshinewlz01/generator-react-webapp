@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "number-no-trailing-zeros": null,
+    "function-linear-gradient-no-nonstandard-direction":null,
+    "comment-empty-line-before": null,
+    "number-leading-zero": null,
+    "indentation": [ 2, {
+      "message": "Please use 2 spaces for indentation. Tabs make The Architect grumpy.",
+      "severity": "warning"
+    }]
+  }
+}

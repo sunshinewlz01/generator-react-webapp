@@ -1,0 +1,30 @@
+{
+  "name": "generator-react-webapp",
+  "version": "0.0.1",
+  "description": "Generator react webapp scaffold.",
+  "main": "generators/app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunshinewlz01/generator-react-webapp.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "react",
+    "webapp"
+  ],
+  "author": "weileizhe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sunshinewlz01/generator-react-webapp/issues"
+  },
+  "homepage": "https://github.com/sunshinewlz01/generator-react-webapp#readme",
+  "files": [
+    "generators"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.1.1"
+  }
+}
