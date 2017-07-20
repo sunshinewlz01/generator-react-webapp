@@ -83,6 +83,7 @@ Yeoman会深度链接到文件系统和你如何组织你的目录树。<br />
 }
 ```
 一般情况下，一个generator工程项目的树形结构如下：
+```
 ── LICENSE
 ├── README.md
 ├── generators
@@ -117,6 +118,7 @@ Yeoman会深度链接到文件系统和你如何组织你的目录树。<br />
 │                   ├── images
 │                   └── mock
 └── package.json
+```
 
 
 
