@@ -6,6 +6,7 @@
 1. Node.js（6.0以上版本）
 2. npm (3.0以上版本)
 3. 安装yeoman
+
 ```bash
 npm install -g yo
 ```
@@ -14,10 +15,10 @@ npm install -g yo
 在开始开发任何一个项目时，总需要初始化项目工程，最开始的时候往往是手动创建工程目录和文件，并逐渐形成一套架构规范或者最佳实践和风格指南。<br />
 当需要把这套最佳实践应用到其他项目中时，为了快速创建标准化项目，往往就需要一个脚手架来自动创建标准化的工程项目了。<br />
 鉴于Yeoman的强大功能，基于Yeoman写一个脚手架是一个比较好的选择：<br />
-1. Yeoman是一个通用的脚手架系统允许创建任何的app。它可以迅速的搭建一个新项目，并且能够简化现有项目的维护。<br />
-2. Yeoman构建的项目与语言无关。它可以构建任何语言的项目 (Javascript, Java, Python, C#,等。)<br />
-3. Yeoman它自己不能做任何操作。每个操作都是由generators基本插件在Yeoman环境所完成的。Yeoman总是可以为你需要的脚手架工具作出正确的选择。<br />
-4. Generators是Yeoman生态系统的基础.它是一个重要组件，运行yo为终端用户生成项目文件。<br />
+1. Yeoman是一个通用的脚手架系统允许创建任何的app。它可以迅速的搭建一个新项目，并且能够简化现有项目的维护。
+2. Yeoman构建的项目与语言无关。它可以构建任何语言的项目 (Javascript, Java, Python, C#,等。)
+3. Yeoman它自己不能做任何操作。每个操作都是由generators基本插件在Yeoman环境所完成的。Yeoman总是可以为你需要的脚手架工具作出正确的选择。
+4. Generators是Yeoman生态系统的基础.它是一个重要组件，运行yo为终端用户生成项目文件。
 本文即主要是介绍如何基于Yeoman写一个创建React webapp项目的脚手架，下面将具体逐步介绍。
 
 ## 三、组织generator
@@ -59,9 +60,9 @@ npm init
    }
 ```
 注意：<br />
-1.这个generator的name属性必须以“generator-”为前缀;<br />
-2.keywords属性必须包含"yeoman-generator";<br />
-3.“file” 属性必须是由你的generator使用的文件排列和目录。<br />
+1. 这个generator的name属性必须以“generator-”为前缀;
+2. keywords属性必须包含"yeoman-generator";
+3. “file” 属性必须是由你的generator使用的文件排列和目录。
    
 另外，为了保证yeoman-generator已经安装到最新版本，你还需要运行一下如下命令：
 ```bash
