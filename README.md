@@ -120,6 +120,201 @@ Yeoman会深度链接到文件系统和你如何组织你的目录树。<br />
 └── package.json
 ```
 
+以上文件中templates文件夹下面的是项目模板文件，generator/app/index.js则是这个generator的主程序文件。
+
+## 五、如何写generator
+
+### 1.基础generator
+Yeoman提供了一个基础的generator，你可以扩展到实现你自己的行为。这个基本的 generator将添加大部分的功能。ES6写法如下：
+```js
+// 创建 yeoman generator 的核心功能模块.
+const Generator = require('yeoman-generator');
+module.exports = class extends Generator {
+// some code here
+}
+```
+
+### 2.generator生命周期钩子
+- initializing()
+初始化方法
+- constructor()
+构造函数，获取输入参数以及配置信息等。
+- prompting()
+提供给用户的选项菜单，并获取用户输入
+- configuring()
+保存配置信息
+- writing()
+写入文件
+- install()
+安装packages(npm, yarn, bower等)
+- end()
+安装结束
+- conflicts()
+处理异常和冲突
+
+### 3.主体代码
+按照前面所说的生命周期钩子函数，重写方法，得到generator主体代码。
+
+```js
+/**
+ * Created by weileizhe on 17/7/19.
+ */
+
+
+// 创建 yeoman generator 的核心功能模块.
+const Generator = require('yeoman-generator');
+
+// 文件读写模块.
+const fs = require('fs');
+// 路径模块
+const path = require('path');
+
+// PS: fs 和 path 是 NodeJS 的核心模块，无需安装.
+
+/**
+ * Base generator.
+ */
+module.exports = class extends Generator {
+
+    /** 构造函数 */
+    constructor(args, opts) {
+        // 继承必须.
+        super(args, opts);
+
+        // 获取 AppName，使用路径尾.
+        this.projectName = args[0];
+        console.log(this.projectName);
+    }
+
+    /**
+     * 初始化方法.
+     */
+    initializing() {
+        this.log("开始构建项目...");
+    }
+
+    prompting() {
+        const done = this.async();
+        if(!this.projectName) {
+            const prompts = [{
+                type    : 'input',
+                name    : 'projectName',
+                message : 'Your project name',
+                default : this.appname // Default to current folder name
+            }];
+            return this.prompt(prompts).then((props) => {
+                this.props = props;
+                done();
+            });
+        } else {
+            done();
+        }
+
+    }
+
+    /**
+     * 写入配置
+     */
+    configuring() {
+        const projectName = this.projectName || this.props.projectName;
+        const projectPath = process.cwd() + '/' + projectName;
+
+        // 获取 package 配置模板.
+        let defaultSettings = this.fs.readJSON( this.templatePath('package.json') );
+        // 做新 package 配置文件.
+        let packageSettings = {
+            name: this.projectName || this.props.projectName,
+            private: true,
+            version: defaultSettings.version,
+            description: this.projectName || this.props.projectName,
+            scripts: defaultSettings.scripts,
+            repository: defaultSettings.repository,
+            author: defaultSettings.author,
+            devDependencies: defaultSettings.devDependencies,
+            dependencies: defaultSettings.dependencies,
+            homepage:defaultSettings.homepage
+        };
+
+        // 写入 package.json.
+        this.fs.writeJSON(this.destinationPath(projectPath+'/package.json'), packageSettings);
+    }
+
+    /**
+     * 写入文件
+     */
+    writing() {
+        const projectName = this.projectName || this.props.projectName;
+        const projectPath = process.cwd() + '/' + projectName;
+
+        if(projectName) {
+            fs.mkdirSync(`${projectName}`);
+
+            console.log(projectPath);
+            process.chdir(projectPath);
+        }
+        console.log(this.destinationPath(projectPath,"/src"));
+
+        /* 拷贝所需的文件. */
+
+        this.fs.copy(
+            this.templatePath("src"),
+            this.destinationPath(projectPath,"/src")
+        );
+        this.fs.copy(
+            this.templatePath("public"),
+            this.destinationPath(projectPath,"/public")
+        );
+        this.fs.copy(
+            this.templatePath(".eslintrc"),
+            this.destinationPath(projectPath,"/.eslintrc")
+        );
+        this.fs.copy(
+            this.templatePath(".npmignore"),
+            this.destinationPath(projectPath,"/.gitignore")
+        );
+        this.fs.copy(
+            this.templatePath(".stylelintrc"),
+            this.destinationPath(projectPath,"/.stylelintrc")
+        );
+        this.fs.copy(
+            this.templatePath("build.sh"),
+            this.destinationPath(projectPath,"/build.sh")
+        );
+        this.fs.copy(
+            this.templatePath("compile.sh"),
+            this.destinationPath(projectPath,"/compile.sh")
+        );
+        this.fs.copy(
+            this.templatePath("nginx.conf"),
+            this.destinationPath(projectPath,"/nginx.conf")
+        );
+        this.fs.copy(
+            this.templatePath("README.md"),
+            this.destinationPath(projectPath,"/README.md")
+        );
+
+    }
+
+    /**
+     * 安装方法
+     */
+    install() {
+        // 安装 package 安装.
+        this.installDependencies({ npm: true,bower:false});
+    }
+
+    end() {
+
+        this.log("构建项目成功！");
+
+    }
+
+};
+```
+
+
+
+
 
 
 
