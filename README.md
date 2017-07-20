@@ -1,5 +1,5 @@
 # 手把手教你写创建React webapp项目的脚手架
-本文主要针对脚手架初学者，老鸟略过。
+本文主要针对脚手架初学者，老鸟可略过~
 
 ## 一、安装环境
 #### 首先保证已经安装以下软件：
@@ -56,7 +56,6 @@ npm install -g yo
        "yeoman-generator": "^1.1.1"
      }
    }
-
    ```
    注意：<br/>
    1.这个generator的name属性必须以 generator- 为前缀;<br/>
