@@ -331,7 +331,7 @@ module.exports = class extends Generator {
 ```bash
 npm link
 ```
-这将安装项目依赖项和链接一个全局模块到本地文件。npm下载完后，将能够使用yo name命令运行调试generator了。具体项目地址见[generator-react-webapp](https://github.com/sunshinewlz01/generator-react-webapp)。
+这将安装项目依赖项和链接一个全局模块到本地文件。npm下载完后，将能够使用yo name命令运行调试generator了。具体项目github地址见[generator-react-webapp](https://github.com/sunshinewlz01/generator-react-webapp)。
 
 ## 六、如何部署和使用
 ### 1. 部署
