@@ -312,6 +312,55 @@ module.exports = class extends Generator {
 };
 ```
 
+### 4.添加自己的方法
+当然，除了重写方法外，你也可以添加自己的方法。
+下面是一个例子：
+```js
+module.exports = class extends Generator {
+  method1() {
+    console.log('method 1 just ran');
+  },
+  method2() {
+    console.log('method 2 just ran');
+  }
+};
+```
+
+### 5.运行generator
+因为你是在本地开发的 generator，它还不能够作为一个全局的 npm 模块去获取。所以还需要在generator项目的根目录（在 generator-name/ 文件夹），执行如下命令：
+```bash
+npm link
+```
+这将安装项目依赖项和链接一个全局模块到本地文件。npm下载完后，将能够使用yo name命令运行调试generator了。
+
+## 六、如何部署和使用
+### 1. 部署
+开发完成好generator自后，可以部署到npm官方服务器上，当然也可以部署到私服上。命令如下：
+```bash
+npm publish
+```
+
+### 2. 使用
+- 安装Yeoman
+```bash
+npm install -g yo
+``` 
+- 安装generator
+```bash
+npm install generator-xxx -g
+```
+- 使用generator
+```bash
+yo react-xxx
+```
+
+
+### 七、结束语
+Yeoman的强大不止这些，本文实际上只是使用了其中的一个小小点。更多请访问[Yeoman官方网站](http://yeoman.io/)
+
+
+
+
 
 
 
